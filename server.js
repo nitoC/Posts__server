@@ -6,7 +6,7 @@ const route =require("./routes/router.js")
 require("dotenv").config();
 const app=express();
 app.use(cors());
-mongoose.connect(process.env.URL,{ useNewUrlParser: true ,useUnifiedTopology:true},function(error){
+mongoose.connect(process.env.URL,{ useNewUrlParser: true ,useUnifiedTopology:true,useFindAndModify:false},function(error){
     if(error){
     console.log(error.message)
     }else{
@@ -17,7 +17,7 @@ mongoose.connect(process.env.URL,{ useNewUrlParser: true ,useUnifiedTopology:tru
 
 
 const Port=process.env.PORT
-app.use(bodyParser.json({limit:"300kb"}));
+app.use(bodyParser.json({limit:"10000kb"}));
 app.use(bodyParser.urlencoded({extended:true}))
 app.use("/",route)
 

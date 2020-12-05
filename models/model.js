@@ -8,6 +8,10 @@ const PostSchema= new mongoose.Schema({
     like:{
         type:Number,
         default:0
+    },
+    createdAt:{
+        type:Date,
+        default:new Date
     }
 })
 

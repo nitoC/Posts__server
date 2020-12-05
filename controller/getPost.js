@@ -2,15 +2,17 @@
 
 const Model=require("../models/model.js")
 const postData= async (req,res)=>{
-    console.log("data entry mode")
-    try{console.log(req.body)
+   
+    try{
             if(req.body){
              var { 
                 creator,
                 title,
                 message,
                 tags,
-                file
+                file,
+                createdAt,
+                like,
             }=req.body
            var Posts= new Model({
                 creator:creator,
@@ -18,20 +20,21 @@ const postData= async (req,res)=>{
                 message:message,
                 tags:tags,
                 file:file,
-                like:0
+                like:like,
+                createdAt:createdAt
             });
            await Posts.save((err)=>{
                if(err){console.log(err.message)}
                else{console.log("saved successfully")}
            });
-             res.status(200).json(Posts)
-       Model.find({},(response,err)=>{
+             res.status(200).json(Posts);
+     /* await Model.find({},(err,response)=>{
            if(err){
                console.log(err.message)
            }else{
                console.log(response)
            }
-       })
+       })*/
             }else{
 
                 console.log(req.body)
